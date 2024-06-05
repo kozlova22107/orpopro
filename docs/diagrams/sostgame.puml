@@ -1,0 +1,13 @@
+@startuml
+state "Новая игра" as NewGame
+state "Игра идёт" as Playing
+state "Проигрыш" as Lose
+state "Победа" as Win
+
+[*] --> NewGame
+NewGame --> Playing : Начать игру
+Playing --> Lose : Открыта мина
+Playing --> Win : Все клетки открыты
+Lose --> [*]
+Win --> [*]
+@enduml

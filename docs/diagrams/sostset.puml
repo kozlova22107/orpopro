@@ -1,0 +1,11 @@
+@startuml
+state "Ожидание ввода" as WaitingInput
+state "Изменение настроек" as ChangingSettings
+state "Начать игру" as StartGame
+
+[*] --> WaitingInput
+WaitingInput --> ChangingSettings : Ввод данных
+ChangingSettings --> WaitingInput : Сохранение настроек
+WaitingInput --> StartGame : Нажатие кнопки "Начать"
+StartGame --> [*]
+@enduml

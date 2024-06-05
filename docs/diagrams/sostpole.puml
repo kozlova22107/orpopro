@@ -1,0 +1,11 @@
+@startuml
+state "Закрытое" as Closed
+state "Открытое" as Opened
+state "Помеченное" as Flagged
+
+[*] --> Closed
+Closed --> Opened : Left Click
+Closed --> Flagged : Right Click
+Flagged --> Closed : Right Click
+Opened --> [*] : Проигрыш/Победа
+@enduml

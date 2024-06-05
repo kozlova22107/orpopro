@@ -1,0 +1,110 @@
+@startuml
+
+class Widget {
+  - bg_rect: pygame.Rect
+  - bg_color: Tuple[int, int, int]
+  - font_color: Tuple[int, int, int]
+  - font: pygame.font.Font
+  - text: pygame.Surface
+  - text_rect: pygame.Rect
+  + change_text(text: str): void
+  + draw(screen: pygame.Surface): void
+}
+
+class Widgets {
+  - widgets: List[Widget]
+  - text_in_widget: List[str]
+  - height_sprite: int
+  - width_sprite: int
+  + manip(event: pygame.event.Event): List[str]
+  + draw(screen: pygame.Surface): void
+}
+
+class Entry {
+  - text_label: pygame.Surface
+  - bg_rect: pygame.Rect
+  - bg_color: Tuple[int, int, int]
+  - font_color: Tuple[int, int, int]
+  - font: pygame.font.Font
+  - text: str
+  + manip(event: pygame.event.Event): void
+  + draw(screen: pygame.Surface): void
+}
+
+class Cell {
+  - rect: pygame.Rect
+  - bomb: bool
+  - state_visual: str
+  - grow_sprite: pygame.Surface
+  - idle_sprite: pygame.Surface
+  - flag_sprite: pygame.Surface
+  - bomb_sprite: pygame.Surface
+  - number_sprites: List[pygame.Surface]
+  + is_bomb(): bool
+  + set_bomb(): void
+  + set_flag(): void
+  + set_num(n: int): void
+  + push(): bool
+  + is_excavated(): bool
+  + draw(window: pygame.Surface): void
+  + draw_true(window: pygame.Surface): void
+}
+
+class Grid {
+  - cells: List[List[Cell]]
+  - width: int
+  - height: int
+  + __init__(width: int, height: int): void
+  + generate_bombs(num_bombs: int): void
+  + count_neighbors(x: int, y: int): int
+  + reveal(x: int, y: int): bool
+  + draw(screen: pygame.Surface): void
+}
+
+class Game {
+  - grid: Grid
+  - widgets: Widgets
+  - entry: Entry
+  - game_engine: GameEngine
+  - menu: Menu
+  - game_over: bool
+  + __init__(width: int, height: int, num_bombs: int): void
+  + handle_events(events: List[pygame.event.Event]): void
+  + update(): void
+  + draw(screen: pygame.Surface): void
+  + run(): void
+}
+
+class GameEngine {
+  - grid: Grid
+  - num_flags: int
+  - num_unexcavated: int
+  + __init__(grid: Grid): void
+  + handle_click(x: int, y: int): bool
+  + check_win_condition(): bool
+  + check_game_over(): bool
+  + update_flags(): void
+  + reset_game(): void
+}
+
+class Menu {
+  - options: List[str]
+  - selected_option: int
+  - font: pygame.font.Font
+  - font_color: Tuple[int, int, int]
+  - bg_color: Tuple[int, int, int]
+  + handle_events(events: List[pygame.event.Event]): void
+  + draw(screen: pygame.Surface): void
+  + get_selected_option(): int
+}
+
+Game "1" o-- "1" Widgets
+Game "1" o-- "1" Entry
+Game "1" o-- "1" Grid
+Game "1" o-- "1" GameEngine
+Game "1" o-- "1" Menu
+GameEngine "1" o-- "1" Grid
+Menu "1" -- "*" Widget : contains
+Grid "1" o-- "*" Cell : contains
+
+@enduml

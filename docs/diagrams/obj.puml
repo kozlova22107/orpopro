@@ -1,0 +1,80 @@
+@startuml
+
+object Game {
+  grid: Grid
+  widgets: Widgets
+  entry: Entry
+  game_engine: GameEngine
+  menu: Menu
+  game_over: bool
+}
+
+object Grid {
+  cells: List[List[Cell]]
+  width: int
+  height: int
+}
+
+object Cell {
+  rect: pygame.Rect
+  bomb: bool
+  state_visual: str
+  grow_sprite: pygame.Surface
+  idle_sprite: pygame.Surface
+  flag_sprite: pygame.Surface
+  bomb_sprite: pygame.Surface
+  number_sprites: List[pygame.Surface]
+}
+
+object Widgets {
+  widgets: List[Widget]
+  text_in_widget: List[str]
+  height_sprite: int
+  width_sprite: int
+}
+
+object Widget {
+  bg_rect: pygame.Rect
+  bg_color: Tuple[int, int, int]
+  font_color: Tuple[int, int, int]
+  font: pygame.font.Font
+  text: pygame.Surface
+  text_rect: pygame.Rect
+}
+
+object Entry {
+  text_label: pygame.Surface
+  bg_rect: pygame.Rect
+  bg_color: Tuple[int, int, int]
+  font_color: Tuple[int, int, int]
+  font: pygame.font.Font
+  text: str
+}
+
+object GameEngine {
+  grid: Grid
+  num_flags: int
+  num_unexcavated: int
+}
+
+object Menu {
+  options: List[str]
+  selected_option: int
+  font: pygame.font.Font
+  font_color: Tuple[int, int, int]
+  bg_color: Tuple[int, int, int]
+}
+
+Game o-- Grid
+Game o-- Widgets
+Game o-- Entry
+Game o-- GameEngine
+Game o-- Menu
+
+GameEngine o-- Grid
+
+Grid *-- Cell
+
+Widgets *-- Widget
+
+@enduml
