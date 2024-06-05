@@ -1,7 +1,8 @@
 [![CI/CD GitHub Actions](https://github.com/kozlova22107/orpopro/actions/workflows/main.yml/badge.svg)](https://github.com/kozlova22107/orpopro/actions/workflows/main.yml)
 [![Coverage Status](https://coveralls.io/repos/github/kozlova22107/orpopro/badge.svg?branch=main)](https://coveralls.io/github/kozlova22107/orpopro?branch=main)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=kozlova22107_orpopro&metric=bugs)](https://sonarcloud.io/summary/new_code?id=kozlova22107_orpopro)
-[![Code smells](https://sonarcloud.io/api/project_badges/measure?kozlova22107_orpopro&metric=code_smells)](https://sonarcloud.io/dashboard?id=kozlova22107_orpopro)
+[![Code smells](https://sonarcloud.io/api/project_badges/measure?project=kozlova22107_orpopro&metric=code_smells)](https://sonarcloud.io/dashboard?id=kozlova22107_orpopro)
+
 
 
 <a id="anchor"></a>
