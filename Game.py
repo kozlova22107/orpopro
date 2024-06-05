@@ -8,7 +8,6 @@ from Widget import Widgets
 class Game:
     def __init__(self, board_size, bombs_cnt):
         pygame.init()
-        pygame.mixer.init()
         pygame.display.set_caption("Minesweeper")
         if board_size < 10 or board_size > 50:
             board_size = 24

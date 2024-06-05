@@ -4,7 +4,6 @@ from Widget import Widgets, Entry
 class Menu:
     def __init__(self):
         pygame.init()
-        pygame.mixer.init()
         pygame.display.set_caption("Minesweaper")
 
         self.screen = pygame.display.set_mode((600, 400))
