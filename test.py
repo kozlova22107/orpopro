@@ -109,6 +109,15 @@ class TestGrid(unittest.TestCase):
     def test_push_already_excavated(self):
         self.grid.cells[1][1].state_visual = "grow"
 
+    def test_bomb_planting(self):
+        self.grid.bombs_is_planting = False
+        self.grid.push(120, 120)
+        self.assertFalse(self.grid.cells[1][1].is_bomb())
+        cnt_bombs = 0
+        for block in self.grid.cells:
+            for cell in block:
+                cnt_bombs += cell.is_bomb()
+        self.assertTrue(cnt_bombs == 5)  # количество расположеных бомб равно заявленному
 
         result = self.grid.push(1 * 120, 1 * 120)
         self.assertFalse(result)
