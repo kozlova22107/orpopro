@@ -88,8 +88,6 @@ class Grid:
         while queue:  # Пока очередь не пуста
             i_ind, j_ind = queue.popleft()  # Извлекаем ячейку из очереди
 
-            if self.cells[i_ind][j_ind].is_bomb():  # Пропускаем ячейку, если в ней есть бомба
-                continue
 
             bombs_cnt = self.bombs_cnt_around(i_ind, j_ind)  # Получаем количество бомб вокруг ячейки
 

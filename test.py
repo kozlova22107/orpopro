@@ -47,7 +47,8 @@ class TestGame(unittest.TestCase):
 class TestGrid(unittest.TestCase):
     def setUp(self):
         pygame.init()
-        self.grid = Grid(0, 60, 600, 600, 5, 5)
+        self.grid = Grid(0, 0, 600, 600, 5, 5)
+        self.grid.bombs_is_planting = True
 
     def tearDown(self):
         pygame.quit()
@@ -90,21 +91,24 @@ class TestGrid(unittest.TestCase):
         self.assertEqual(cnt, 2)
 
     def test_push_bomb(self):
-        self.grid.cells[1][1].bomb = True
+        self.grid.cells[1][1].set_bomb()
         result = self.grid.push(1 * 120, 1 * 120)
-        self.assertFalse(result)
+        self.assertTrue(result)
 
     def test_push_no_bomb(self):
-        self.grid.bombs_is_planting = True
+        result = self.grid.push(1 * 120, 1 * 120)
+        self.assertFalse(result)
+        self.assertTrue(self.grid.cells[1][1].is_excavated())
 
-        self.grid.cells[1][1].bomb = False
-
+    def test_push_grow(self):
+        self.grid.cells[1][1].push()
         result = self.grid.push(1 * 120, 1 * 120)
         self.assertFalse(result)
         self.assertTrue(self.grid.cells[1][1].is_excavated())
 
     def test_push_already_excavated(self):
         self.grid.cells[1][1].state_visual = "grow"
+
 
         result = self.grid.push(1 * 120, 1 * 120)
         self.assertFalse(result)
